@@ -2,7 +2,6 @@ const csv = require('csv-parser')
 const fs = require('fs');
 const { parse } = require('path');
 const results = [];
-let parsedCSV = [];
 let books = [];
 
 class Book{
@@ -58,6 +57,15 @@ fs.createReadStream('books.csv')
             let book = new Book(obj.title, obj.authors, obj.categories, obj.thumbnail, obj.description, obj.publishedYear, obj.averageRating, obj.pages, obj.numRatings);
             books.push(book);
         }
-});
 
-console.log(books[120].getName());
+        let name = books[0].title
+        console.log(books[0].title)
+
+
+
+
+
+
+
+    });
+    
