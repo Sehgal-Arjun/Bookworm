@@ -58,14 +58,8 @@ fs.createReadStream('books.csv')
             books.push(book);
         }
 
-        let name = books[0].title
-        console.log(books[0].title)
-
-
-
-
-
-
-
+        window.onload() = function(){
+            document.getElementById("homeImage").innerHTML= "<src=" + books[0].thumbnail + "userImage";
+        }
+        console.log(books[0].thumbnail)
     });
-    
