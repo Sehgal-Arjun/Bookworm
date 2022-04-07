@@ -24,7 +24,7 @@ img {
 .center {
     margin: auto;
     width: 50%;
-    border: 3px solid green;
+    border: 3px solid #1D7874;
     padding: 10px;
 }
 
@@ -38,7 +38,7 @@ h2 {
 }
 /* Add a black background color to the top navigation */
 .topnav {
-    background-color: rgb(88,84,84);
+    background-color: #263D42;
     overflow: hidden;
     align-items: center;
     align-self: center;
@@ -67,7 +67,7 @@ h2 {
   
   /* Add a color to the active/current link */
 .topnav a.active {
-    background-color: #04AA6D;
+    background-color: #63C7B2;
     color: white;
 }
 
@@ -78,7 +78,7 @@ h2 {
     z-index: 9;
     right: 35%;
     position: absolute;
-    top: 42.5%;
+    top: 48.75%;
     transform: translateY(-50%);
 }
 
@@ -88,9 +88,10 @@ h2 {
     z-index: 0;
     left: 47%;
     position: absolute;
-    top: 42.5%;
+    top: 44%;
     transform: translateY(-50%);
     font-size: x-large;
+    color: rbg(0,0,0);
 }
 
 /*
@@ -106,15 +107,37 @@ div {
     justify-content: left;
     width: 100%;
 }
+.numTime {
+    font-size: xx-large;
+}
 .botText {
     display: flex;
     justify-content: right;
     width: 100%;
 }
 
+.textattop { 
+    color: #CCDBDC;
+}
+
 .yourPersonal {
-    font-size: larger;
+    font-size: x-large;
 }
 .bookshelf { 
-    font-size: x-large;
+    font-size: xx-large;
+}
+
+.howManyBooksReadTextHome {
+    position:absolute;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    font-size:x-large;
+    color:#CCDBDC;
+    z-index: 500;
+}
+
+.howManyBooksReadTextHome a{
+    cursor: pointer;
+    color: #8E6C88;
 }
