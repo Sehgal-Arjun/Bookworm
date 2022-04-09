@@ -127,7 +127,7 @@ div {
     font-size: xx-large;
 }
 
-.howManyBooksReadTextHome {
+.howManyBooksReadText {
     position:absolute;
     display: flex;
     justify-content: center;
@@ -137,7 +137,7 @@ div {
     z-index: 500;
 }
 
-.howManyBooksReadTextHome a{
+.howManyBooksReadText a{
     cursor: pointer;
     color: #8E6C88;
 }
