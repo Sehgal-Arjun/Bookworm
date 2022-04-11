@@ -1,3 +1,12 @@
+/*
+Centering Elements:
+
+display: flex;
+justify-content: center;
+width: 100%;
+
+*/
+
 img {
     display: block;
     margin-left: auto;
@@ -6,39 +15,12 @@ img {
   }
 
 .rectangle {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr 1fr;
-    height: 250px;
-}
-
-.backgroundRect {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    height: 250px;
-    grid-gap: 1em;
-    align-items: center;
-    background-color: #63C7B2;
-}
-
-.imageBox > img{
-    object-fit: fill;
-    width: 70%;
-    max-height: 250px;
-}
-
-.imageBox {
+    display: flex;
     justify-content: center;
-    align-content: center;
+    width: 100%;
+    position:static;
+    z-index: 0;
 }
-
-
-.minsRead{
-    justify-content: center;
-    align-content: center;
-}
-
-
-
 .center {
     margin: auto;
     width: 50%;
@@ -90,6 +72,28 @@ h2 {
 }
 
 
+.bookLineArt {
+    width: 60%;
+    height: auto;
+    z-index: 9;
+    right: 35vw;
+    position: fixed;
+    top: 48.7vh;
+    transform: translateY(-50%);
+}
+
+.timeRead {
+    width: 325px;
+    height:300px;
+    z-index: 0;
+    left: 47vw;
+    position: fixed;
+    top: 44vh;
+    transform: translateY(-50%);
+    font-size: x-large;
+    color: rbg(0,0,0);
+}
+
 /*
 div {
     border-style: solid;
@@ -97,6 +101,20 @@ div {
     border-color: #FFFFFF;
 }
 */
+
+.topText {
+    display: flex;
+    justify-content: left;
+    width: 100%;
+}
+.numTime {
+    font-size: xx-large;
+}
+.botText {
+    display: flex;
+    justify-content: right;
+    width: 100%;
+}
 
 .textattop { 
     color: #CCDBDC;
