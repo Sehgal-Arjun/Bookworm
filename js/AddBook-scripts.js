@@ -7,7 +7,7 @@ function add(){
     userBooks.push(name);
     console.log(userBooks);
 
-    localStorage.setItem("key",userBooks.join(','));
+    localStorage.setItem('key', userBooks.join(','));
     document.getElementById('input').value = '';
 }
 
