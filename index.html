@@ -7,15 +7,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link class="include" href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link class="include" href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-    
-    
 
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 
 	<link rel="stylesheet" href="css/index-stylesheet.css">
+    <script type = "text/javascript">
+        let books = [];
+        let stringBooks = [];
+        fetch('./booksdata.json')
+        .then (results => results.json())
+        .then (data => { 
+            for (var i = 0; i < data.length; i++){
+                books.push(data[i]);
+            }
+
+            for (var i = 0; i < books.length; i++){
+                if (books[i].categories != undefined){
+                    if(books[i].categories.length == 0){
+                        books.splice(i,1);
+                    }
+                }
+                if (books[i].average_rating == undefined){
+                    books.splice(i,1);
+                }
+                if (books[i].ratings_count == undefined){
+                    books.splice(i,1);
+                }
+                if (books[i].authors.length == 0){
+                    books.splice(i,1);
+                }
+            }
+            
+            for (var i = 0; i < books.length; i++){
+                stringBooks.push(JSON.stringify(books));
+            }
+            
+            console.log(books)
+            localStorage.setItem('books', stringBooks);
+        })
+    </script>
 </head>
 
-<body data-new-gr-c-s-check-loaded="14.1057.0" data-gr-ext-installed="" class="" id="page-top">
+<body  data-new-gr-c-s-check-loaded="14.1057.0" data-gr-ext-installed="" class="" id="page-top">
 
     <!-- Navigation -->
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
@@ -124,7 +157,6 @@
 
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js"></script>
 <script src="js/jquery-easing.js"></script>
 <script id="main-script" src="js/index-scripts.js"></script>
 </body>

@@ -4,9 +4,13 @@ var userBooks = [];
 
 function add(){
     var name = document.getElementById("input").value;  
+    
+    while (name.slice(-1) == " ") {
+        name = name.slice(0,-1);
+
+    }
     userBooks.push(name);
     console.log(userBooks);
-
     localStorage.setItem('key', userBooks.join(','));
     document.getElementById('input').value = '';
 }
