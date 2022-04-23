@@ -9,9 +9,15 @@ function add(){
         name = name.slice(0,-1);
 
     }
+    books = JSON.parse(localStorage.getItem('books'));
+
+    for (let i = 0; i < books.length; i++){
+        
+    }
+
     userBooks.push(name);
     console.log(userBooks);
-    localStorage.setItem('key', userBooks.join(','));
+    localStorage.setItem('userbooks', userBooks.join(','));
     document.getElementById('input').value = '';
 }
 
