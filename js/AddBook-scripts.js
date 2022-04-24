@@ -12,12 +12,21 @@ function add(){
     books = JSON.parse(localStorage.getItem('books'));
 
     for (let i = 0; i < books.length; i++){
-        
+        if (books[i].title.toLowerCase() == name.toLowerCase()){
+            userBooks.push(books[i]);
+            if (i < books.length - 1){
+                books.splice(i, i+1);
+            }
+            else{
+                books.splice(-1);
+            }
+        }
     }
 
-    userBooks.push(name);
     console.log(userBooks);
-    localStorage.setItem('userbooks', userBooks.join(','));
+    localStorage.setItem('books', JSON.stringify(books));
+    localStorage.setItem('userbooks', JSON.stringify(userBooks));
+    localStorage.setItem('first', 1);
     document.getElementById('input').value = '';
 }
 

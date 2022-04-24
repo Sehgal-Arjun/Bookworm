@@ -13,7 +13,6 @@
 	<link rel="stylesheet" href="css/index-stylesheet.css">
     <script type = "text/javascript">
         let books = [];
-        /*let stringBooks = [];*/
         fetch('./booksdata.json')
         .then (results => results.json())
         .then (data => { 
@@ -27,6 +26,9 @@
                         books.splice(i,1);
                     }
                 }
+                if (books[i].categories == undefined){
+                    books.splice(i,1);
+                }
                 if (books[i].average_rating == undefined){
                     books.splice(i,1);
                 }
@@ -36,9 +38,16 @@
                 if (books[i].authors.length == 0){
                     books.splice(i,1);
                 }
+                if (books[i].num_pages == undefined){
+                    books.splice(i,1);
+                }
+                else{
+                    if (books[i].num_pages == 0){
+                        books.splice(i,1);
+                    }
+                }
             }
             books.splice(223, 224); /* the book's title is the same as the author?*/
-
             console.log(books);
             
             /*for (var i = 0; i < books.length; i++){

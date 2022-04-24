@@ -54,7 +54,13 @@ jQuery.easing.jswing=jQuery.easing.swing;jQuery.extend(jQuery.easing,{def:"easeO
 //&!^%-exclude end
 
 function reading(){
-    console.log(localStorage.getItem('userbooks'));
+    let userBooks = [];
+    let userReading = JSON.parse(localStorage.getItem('userbooks'));
+    for (let i = 0; i < userReading; i++){
+        userBooks.push(userReading[i]);
+    }
+    console.log(userBooks);
+
 }
 
 // jQuery to collapse the navbar on scroll
