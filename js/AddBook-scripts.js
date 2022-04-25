@@ -33,6 +33,24 @@ function add(){
     document.getElementById('input').value = '';
 }
 
+function remove(){
+    var name = document.getElementById("input").value;
+    while (name.slice(-1) == " ") {
+        name = name.slice(0,-1);
+
+    }
+
+    let userbooks = JSON.parse(localStorage.getItem('userbooks'));
+    for (let i = 0; i < userbooks.length; i++){
+        if (userbooks[i].title == name){
+            userbooks.splice(i,1);
+        }
+    }
+
+    console.log(userbooks);
+
+}
+
 
 // jQuery to collapse the navbar on scroll
 $(window).scroll(function() {
