@@ -21,8 +21,10 @@ function add(){
 
     for (let i = 0; i < books.length; i++){
         if (books[i].title.toLowerCase() == name.toLowerCase()){
-            console.log(books[i]);
-            userBooks.push(books[i]);
+            if (!(userBooks.includes(books[i]))){
+                console.log(books[i]);
+                userBooks.push(books[i]);
+            }
         }
     }
 
