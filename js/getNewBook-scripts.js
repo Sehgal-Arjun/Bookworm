@@ -5,8 +5,7 @@ function displayBook(){
     let userBooks = JSON.parse(localStorage.getItem('userbooks') || '[]');
     let usercategories = [];
     for (let i = 0; i < userBooks.length; i++){
-        let currcat = userBooks[i].categories;
-        console.log(currcat);
+        let currcat = userBooks[i].categories; 
         let arraycat = currcat.split(", ");
         for (let j = 0; j < arraycat.length; j++){
             if (!(usercategories.includes(arraycat[j]))){
@@ -30,14 +29,54 @@ function displayBook(){
             }
         }
     }
+    
     if (userBooks.length !== 0){
-        let num = Math.floor(Math.random() * possbooks.length);
-        let book = possbooks[num];
+        let sortedpossbooks = possbooks;
+        for (let i = 0; i < possbooks.length; i++){
+            let score = possbooks[i].average_rating;
+            let possbookscats = possbooks[i].categories.split(', ');
+            for (let j = 0; j < possbookscats.length; j++){
+                if (usercategories.includes(possbookscats[j])){ 
+                    score = score + 1;
+                }
+            }
+            possbooks[i].score = score;
+        }
+
+        //Outer pass
+        for(let i = 0; i < sortedpossbooks.length; i++){
+
+            //Inner pass
+            for(let j = 0; j < sortedpossbooks.length - i - 1; j++){
+
+                //Value comparison using ascending order
+
+                if(sortedpossbooks[j + 1].score < sortedpossbooks[j].score){
+
+                    //Swapping
+                    [sortedpossbooks[j + 1],sortedpossbooks[j]] = [sortedpossbooks[j],sortedpossbooks[j + 1]];
+                }
+            }
+        }
+
+        for (let i = 0; i < sortedpossbooks.length; i++){
+            console.log(sortedpossbooks[i].read);
+            if (sortedpossbooks[i].read == true){
+                sortedpossbooks.splice(i,1);
+            }
+        }
+
+        sortedpossbooks = sortedpossbooks.reverse();
+        
+        console.log(sortedpossbooks);
+        
+    
+        let book = possbooks[0];
         let authorString = book.authors.replace(/;/g,', ');
+ 
+
         console.log("Name: " + book.title + ", Author(s): " + authorString);
-        console.log('books categories: ' + book.categories);
-        console.log(usercategories);
-        console.log(possbooks);
+        console.log('books categories: ' + book.categories); 
     }
     else{
         let num = Math.floor(Math.random() * books.length);

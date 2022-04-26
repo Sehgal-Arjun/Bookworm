@@ -19,11 +19,13 @@ function add(){
     }
     books = JSON.parse(localStorage.getItem('books'));
 
-    for (let i = 0; i < books.length; i++){
-        if (books[i].title.toLowerCase() == name.toLowerCase()){
-            if (!(userBooks.includes(books[i]))){
-                console.log(books[i]);
+    for (let i = 0; i < books.length; i++)
+    {
+        if (books[i].title.toLowerCase() == name.toLowerCase())
+        {            
+            if (!userBooks.includes(books[i])){
                 userBooks.push(books[i]);
+                books[i].read = true;
             }
         }
     }
@@ -44,15 +46,24 @@ function remove(){
 
     let userbooks = JSON.parse(localStorage.getItem('userbooks'));
     for (let i = 0; i < userbooks.length; i++){
-        if (userbooks[i].title == name){
-            userbooks.splice(i,1);
+        if (userbooks[i].title.toLowerCase() == name.toLowerCase()){
+            userbooks.splice(i,i+1);
         }
     }
 
     console.log(userbooks);
+    localStorage.setItem('userbooks', JSON.stringify(userbooks));
 
 }
 
+function emptyReading(){
+    let userbooks = JSON.parse(localStorage.getItem('userbooks'));
+    for (let i = 0; i < userbooks.length; i++){
+        userbooks.splice(i,1);
+    }
+    localStorage.setItem('userbooks', JSON.stringify(userbooks));
+    console.log('cleared!');
+}
 
 // jQuery to collapse the navbar on scroll
 $(window).scroll(function() {

@@ -12,7 +12,6 @@
 
 	<link rel="stylesheet" href="css/index-stylesheet.css">
     <script type = "text/javascript">
-        
         let books = [];
         fetch('./booksdata.json')
         .then (results => results.json())
@@ -48,16 +47,59 @@
                     }
                 }
             }
-            books.splice(223, 224); /* the book's title is the same as the author?*/
+            for (let i = 0; i < books.length; i++){
+                books[i].score = 0;
+            }
+
+            if (localStorage.getItem('firsttime') !== false){
+                for (let i = 0; i < books.length; i++){
+                    books[i].read = false;
+                }
+            }
+            localStorage.setItem('firsttime', false);
+
             console.log(books);
             
             /*for (var i = 0; i < books.length; i++){
                 stringBooks.push(JSON.stringify(books[i]));
             }*/
-
-            localStorage.setItem('books', JSON.stringify(books));
+ 
         
             /*localStorage.setItem('books', stringBooks);*/
+            let userbooks = JSON.parse(localStorage.getItem('userbooks'));
+
+            for (let i = 0; i < userbooks.length; i++){
+                for (let j = 0; j < books.length; j++){
+                    if (books[j].title == userbooks[i].title){
+                        books[j].read = true;
+                        console.log(books[j]);
+                    }
+                }
+            }  
+            
+            for (let i = 0; i < books.length; i++){
+                if (books[i].title.toLowerCase().includes('collection') || books[i].description.toLowerCase().includes('collection') || books[i].subtitle.toLowerCase().includes('collection') || books[i].categories.toLowerCase().includes('collection')){
+                    books.splice(i, 1);
+                }
+            }
+
+            localStorage.setItem('books', JSON.stringify(books));
+
+            let numpages = 0.00;
+            if (userbooks !== null){
+                for (let i = 0; i < userbooks.length; i++){
+                numpages = numpages + userbooks[i].num_pages;
+                }
+                /* 1.58 mins per page, on average */
+                let amountofmins = 1.58 * numpages;
+                let numhours = amountofmins/60.0;
+                document.getElementById('numhours').innerHTML = numhours;
+                document.getElementById('numbooks').innerHTML = userbooks.length;
+            }
+            else{
+                document.getElementById('numhours').innerHTML = 0;
+                document.getElementById('numbooks').innerHTML = 0;
+            }
         })
     </script>
 </head>
@@ -125,10 +167,10 @@
             </div>
 
             <h2 id="">You've read</h2>
-            <h2 id="" style="top: -30px; height: 43px; overflow: hidden; position: relative;">[amount of mins read]</h2>
-            <h2 id="" style="top: -66px; height: 47px; overflow: hidden; position: relative;">Minutes,</h2>
+            <h2 id="numhours" style="top: -30px; height: 43px; overflow: hidden; position: relative;">0</h2>
+            <h2 id="" style="top: -66px; height: 47px; overflow: hidden; position: relative;">Hours,</h2>
             <h2 style="height: 39px; overflow: hidden; top: -69px; position: relative;">over</h2>
-            <h2 style="top: -103px; height: 39px; overflow: hidden; position: relative;">[amount of books read]</h2>
+            <h2 id = "numbooks" style="top: -103px; height: 39px; overflow: hidden; position: relative;">0</h2>
             <h2 style="top: -135px; height: 41px; overflow: hidden; position: relative;">books. check it out.</h2>
         </div>
     </section>
