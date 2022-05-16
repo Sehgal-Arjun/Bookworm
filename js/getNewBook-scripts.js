@@ -4,6 +4,7 @@ jQuery.easing.jswing=jQuery.easing.swing;jQuery.extend(jQuery.easing,{def:"easeO
 function displayBook(){
     let userBooks = JSON.parse(localStorage.getItem('userbooks') || '[]');
     let usercategories = [];
+    let sortedpossbooks = [];
     for (let i = 0; i < userBooks.length; i++){
         let currcat = userBooks[i].categories; 
         let arraycat = currcat.split(", ");
@@ -29,9 +30,15 @@ function displayBook(){
             }
         }
     }
+
+    let finalName = "";
+    let finalAuthor = "";
+    let finalURL = "";
+
+    let removebooks = [];
     
-    if (userBooks.length !== 0){
-        let sortedpossbooks = possbooks;
+    if (userBooks.length !== 0 && possbooks.length != 0){
+        sortedpossbooks = possbooks;
         for (let i = 0; i < possbooks.length; i++){
             let score = possbooks[i].average_rating;
             let possbookscats = possbooks[i].categories.split(', ');
@@ -43,27 +50,45 @@ function displayBook(){
             possbooks[i].score = score;
         }
 
-        //Outer pass
-        for(let i = 0; i < sortedpossbooks.length; i++){
+        for (let i = 0; i < possbooks.length; i++){
+            for (let j = 0; j < userBooks.length; j++){
+                let addscore = stringSimilarity.compareTwoStrings(userBooks[j].title.toLowerCase(),possbooks[i].title.toLowerCase()); // above 0.4/0.5 is pretty decent similarity after testing
+                if (addscore > 0.35){
+                    console.log('comparison between ' + userBooks[j].title.toLowerCase() + ' and ' + possbooks[i].title.toLowerCase() + ": " + addscore);
+                    possbooks[i].score = possbooks[i].score + addscore + 1;
+                }
+            }
+        }
 
-            //Inner pass
+
+        for(let i = 0; i < sortedpossbooks.length; i++){ // ordering by score order
             for(let j = 0; j < sortedpossbooks.length - i - 1; j++){
-
-                //Value comparison using ascending order
-
                 if(sortedpossbooks[j + 1].score < sortedpossbooks[j].score){
-
-                    //Swapping
                     [sortedpossbooks[j + 1],sortedpossbooks[j]] = [sortedpossbooks[j],sortedpossbooks[j + 1]];
                 }
             }
         }
 
         for (let i = 0; i < sortedpossbooks.length; i++){
-            console.log(sortedpossbooks[i].read);
             if (sortedpossbooks[i].read == true){
-                sortedpossbooks.splice(i,1);
+                removebooks.push(sortedpossbooks[i]);
+
             }
+        }
+
+        let usersbooks = JSON.parse(localStorage.getItem('userbooks'));
+        let nameslist = [];
+        for (let i = 0; i < usersbooks.length; i++){
+            nameslist.push(usersbooks[i].title);
+        }
+        for (let i = 0; i < sortedpossbooks.length; i++){
+            if (nameslist.includes(sortedpossbooks[i].title)){
+                removebooks.push(sortedpossbooks[i]);
+            }
+        }
+        
+        for (let i = 0; i < removebooks.length; i++){
+            sortedpossbooks.splice(sortedpossbooks.indexOf(removebooks[i]));
         }
 
         sortedpossbooks = sortedpossbooks.reverse();
@@ -71,20 +96,94 @@ function displayBook(){
         console.log(sortedpossbooks);
         
     
-        let book = possbooks[0];
-        let authorString = book.authors.replace(/;/g,', ');
+        let book = sortedpossbooks[0];
+        if (book != undefined){
+            let authorString = book.authors.replace(/;/g,', ');
  
-
-        console.log("Name: " + book.title + ", Author(s): " + authorString);
-        console.log('books categories: ' + book.categories); 
+            finalName = book.title;
+            finalAuthor = authorString;
+            finalURL = book.thumbnail;
+            console.log(book);
+        }
+        else{
+            console.log('empty list!');
+        }
     }
     else{
         let num = Math.floor(Math.random() * books.length);
+        let newnum = Math.floor(Math.random() * books.length);
+        let newernum = Math.floor(Math.random() * books.length);
+
+        while (num == newnum || num == newernum || newnum == newernum){
+            num = Math.floor(Math.random() * books.length);
+            newnum = Math.floor(Math.random() * books.length);
+            newernum = Math.floor(Math.random() * books.length);
+        }
+
         let book = books[num];
         let authorString = book.authors.replace(/;/g,', ');
-        console.log("Name: " + book.title + ", Author(s): " + authorString);
-        console.log('books categories: ' + book.categories);
+        finalAuthor = authorString;
+        finalName = book.title;
+        finalURL = book.thumbnail;
+        let finalText = "Name: " + finalName + ", Author(s): " + finalAuthor;
+
+        document.getElementById("thumb").src = finalURL;
+        document.getElementById('nameauthor').innerHTML = finalText;
+        console.log(book);
+
+        book = books[newnum];
+        finalAuthor = book.authors.replace(/;/g,', ');
+        finalName = book.title;
+        finalURL = book.thumbnail;
+        finalText = "Name: " + finalName + ", Author(s): " + finalAuthor;
+
+        document.getElementById("thumb1").src = finalURL;
+        document.getElementById('nameauthor1').innerHTML = finalText;
+        console.log(book);
+
+        book = books[newernum];
+        finalAuthor = book.authors.replace(/;/g,', ');
+        finalName = book.title;
+        finalURL = book.thumbnail;
+        finalText = "Name: " + finalName + ", Author(s): " + finalAuthor;
+
+        document.getElementById("thumb2").src = finalURL;
+        document.getElementById('nameauthor2').innerHTML = finalText;
+        console.log(book);
     }
+
+    if (sortedpossbooks.length != 0){
+        let finalText = "Name: " + finalName + ", Author(s): " + finalAuthor;
+
+        document.getElementById("thumb").src = finalURL;
+        document.getElementById('nameauthor').innerHTML = finalText;
+    }
+    
+    if (sortedpossbooks != null && sortedpossbooks.length > 1){
+        let book = sortedpossbooks[1];
+        let authorString = book.authors.replace(/;/g,', ');
+ 
+        let finalName = book.title;
+        let finalAuthor = authorString;
+        let finalURL = book.thumbnail;
+        let finalText = "Name: " + finalName + ", Author(s): " + finalAuthor;
+        document.getElementById("thumb1").src = finalURL;
+        document.getElementById('nameauthor1').innerHTML = finalText;
+
+        if (sortedpossbooks.length > 2){
+            book = sortedpossbooks[2];
+            authorString = book.authors.replace(/;/g,', ');
+     
+            finalName = book.title;
+            finalAuthor = authorString;
+            finalURL = book.thumbnail;
+            finalText = "Name: " + finalName + ", Author(s): " + finalAuthor;
+            document.getElementById("thumb2").src = finalURL;
+            document.getElementById('nameauthor2').innerHTML = finalText;
+        }
+
+    }
+
 
 }
 

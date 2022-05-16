@@ -13,6 +13,8 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 
 	<link rel="stylesheet" href="css/AddBook-stylesheet.css">
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 </head>
 
 <body data-new-gr-c-s-check-loaded="14.1057.0" data-gr-ext-installed="" class="" id="page-top">
@@ -70,7 +72,7 @@
     <!-- About Section -->
     <section id="about" class="container content-section text-center">
 
-        <h2 id="">find your book</h2>
+        <h2>find your book</h2>
         <input type="text" class="form-control" placeholder="Book Name/Author" id="input">
         <br>
         <br>
@@ -78,15 +80,19 @@
         <button onclick = "remove()" class=  "btn btn-success">REMOVE</button>
         <button onclick = "emptyReading()" class = "btn btn-success">CLEAR</button>
     </section>
+    <section>
+    </section>
 
     <!-- Download Section -->
     <div id=""></div>
-    <section id="download" class="content-section text-center" style="top: 49px; height: 598px; overflow: hidden; position: relative;">
+    <section id="download" class="content-section text-center" style="bottom: 10px; height: 598px; overflow: hidden; position: relative;">
 
 
         <div class="row" id="">
             <div class="col-lg-12">
-
+                <div>
+                    <h2 id = "response" class = "centerthis"></h2>
+                </div>
 
 
 
