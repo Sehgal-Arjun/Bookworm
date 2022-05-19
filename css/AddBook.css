@@ -1,0 +1,39 @@
+
+.results{
+    display: grid;
+    grid-template-columns: 1fr 2fr;  
+    grid-gap: 50px;
+    overflow: hidden;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.nameauthor{
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.h1{
+    overflow: hidden;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.grid-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }

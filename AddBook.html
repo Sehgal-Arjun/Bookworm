@@ -15,6 +15,9 @@
 	<link rel="stylesheet" href="css/AddBook-stylesheet.css">
     
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    <script src="//unpkg.com/string-similarity/umd/string-similarity.min.js"></script>
+    <link rel="stylesheet" href="css/AddBook.css">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 </head>
 
 <body data-new-gr-c-s-check-loaded="14.1057.0" data-gr-ext-installed="" class="" id="page-top">
@@ -73,7 +76,7 @@
     <section id="about" class="container content-section text-center">
 
         <h2>find your book</h2>
-        <input type="text" class="form-control" placeholder="Book Name/Author" id="input">
+        <input type="text" class="form-control" placeholder="Book's Name" id="input">
         <br>
         <br>
         <button onclick = "add()" class="btn btn-success" id="">ADD</button>
@@ -85,7 +88,7 @@
 
     <!-- Download Section -->
     <div id=""></div>
-    <section id="download" class="content-section text-center" style="bottom: 10px; height: 598px; overflow: hidden; position: relative;">
+    <section id="download" class="content-section text-center" style="bottom: 10px; min-height: 598px; overflow: hidden; position: relative;">
 
 
         <div class="row" id="">
@@ -94,18 +97,35 @@
                     <h2 id = "response" class = "centerthis"></h2>
                 </div>
 
+                <div>
+                    <h2 id = "similar" class = "centerthis"></h2>
+                </div>
+                <br>
 
-
+                <div class = "results">
+                    <div class = "imgcontainer">
+                        <img id = "thumb" style="width:auto;height:350px;">
+                    </div>
+                    <h1 id = "nameauthor" class = "grid-item" style = "height:400px;"></h1>
+                </div>
+                <br>
+                <div class = "results">
+                    <div class = "imgcontainer">
+                        <img id = "thumb1" style="width:auto;height:350px;max-width: 225px;">
+                    </div>
+                    <h1 id = "nameauthor1" class = "grid-item" style = "height:400px;"></h1>
+                </div>
+                <br>
+                <div class = "results">
+                    <div class = "imgcontainer">
+                        <img id = "thumb2" style="width:auto;height:350px;">
+                    </div>
+                    <h1 id = "nameauthor2" class = "grid-item" style = "height:400px;"></h1>
+                </div>
             </div>
-
-
-
-
-
-
-
-
         </div>
+        <br>
+        
     </section>
 
     <!-- Contact Section -->
