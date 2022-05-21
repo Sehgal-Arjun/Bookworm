@@ -268,7 +268,49 @@
             localStorage.setItem('usethis', book.description);
         }
         else{
-            console.log('empty list!');
+            let num = Math.floor(Math.random() * books.length);
+            let newnum = Math.floor(Math.random() * books.length);
+            let newernum = Math.floor(Math.random() * books.length);
+
+            while (num == newnum || num == newernum || newnum == newernum){
+                num = Math.floor(Math.random() * books.length);
+                newnum = Math.floor(Math.random() * books.length);
+                newernum = Math.floor(Math.random() * books.length);
+            }
+
+            let book = books[num];
+            let authorString = book.authors.replace(/;/g,', ');
+            finalAuthor = authorString;
+            finalName = book.title;
+            finalURL = book.thumbnail;
+            localStorage.setItem('book0', book.description);
+            let finalText = "<a onclick = 'click0()'> Name: " + finalName + ", Author(s): " + finalAuthor + "</a>";
+
+            document.getElementById("thumb").src = finalURL;
+            document.getElementById('nameauthor').innerHTML = finalText;
+            console.log(book);
+
+            book = books[newnum];
+            finalAuthor = book.authors.replace(/;/g,', ');
+            finalName = book.title;
+            finalURL = book.thumbnail;
+            localStorage.setItem('book1', book.description);
+            finalText = "<a onclick = 'click1()'> Name: " + finalName + ", Author(s): " + finalAuthor + "</a>";
+
+            document.getElementById("thumb1").src = finalURL;
+            document.getElementById('nameauthor1').innerHTML = finalText;
+            console.log(book);
+
+            book = books[newernum];
+            finalAuthor = book.authors.replace(/;/g,', ');
+            finalName = book.title;
+            finalURL = book.thumbnail;
+            localStorage.setItem('book2', book.description);
+            finalText = "<a onclick = 'click2()'> Name: " + finalName + ", Author(s): " + finalAuthor + "</a>";
+
+            document.getElementById("thumb2").src = finalURL;
+            document.getElementById('nameauthor2').innerHTML = finalText;
+            console.log(book);
         }
     }
     else{
