@@ -16,6 +16,33 @@ if ((userBooksObj.length !== 0)){
     console.log("User's reading: ")
     console.log(userBooks);
 }
+books = JSON.parse(localStorage.getItem('books'));
+let tempbooks = books;
+
+function fillbox(){
+    let name = localStorage.getItem('autofillbox');
+    let inputbox = document.getElementById('input');
+    inputbox.value = name;
+    document.querySelector('#about').scrollIntoView({
+        behavior: 'smooth'
+      });
+}
+
+function add0() {
+    localStorage.setItem('autofillbox', tempbooks[0].title);
+    fillbox();
+}
+
+function add1(){
+    localStorage.setItem('autofillbox', tempbooks[1].title);
+    fillbox();
+}
+
+function add2(){
+    localStorage.setItem('autofillbox', tempbooks[2].title);
+    fillbox();
+}
+
 
 function add(){
     document.getElementById('similar').innerHTML = "";
@@ -35,7 +62,6 @@ function add(){
         name = name.slice(0,-1);
 
     }
-    books = JSON.parse(localStorage.getItem('books'));
 
     let adding = true;
 
@@ -99,32 +125,34 @@ function add(){
             if (count == 1){
                 document.getElementById('similar').innerHTML = "There was one similar match.";
                 document.getElementById('thumb').src = tempbooks[0].thumbnail;
-                document.getElementById('nameauthor').innerHTML = "Name: " + tempbooks[0].title + ", Author(s): " + tempbooks[0].authors.replace(/;/g, ", ");
+                document.getElementById('nameauthor').innerHTML = "<a onclick = 'add0()'> Name: " + tempbooks[0].title + ", Author(s): " + tempbooks[0].authors.replace(/;/g, ", ") + "</a>";
             }
             if (count == 2){
             document.getElementById('similar').innerHTML = "There were two similar matches for that book.";
             document.getElementById('thumb').src = tempbooks[0].thumbnail;
-            document.getElementById('nameauthor').innerHTML = "Name: " + tempbooks[0].title + ", Author(s): " + tempbooks[0].authors.replace(/;/g, ", ");
+            document.getElementById('nameauthor').innerHTML = "<a onclick = 'add0()'> Name: " + tempbooks[0].title + ", Author(s): " + tempbooks[0].authors.replace(/;/g, ", ") + "</a>";
             document.getElementById('thumb1').src = tempbooks[1].thumbnail;
-            document.getElementById('nameauthor1').innerHTML = "Name: " + tempbooks[1].title + ", Author(s): " + tempbooks[1].authors.replace(/;/g, ", ");
+            document.getElementById('nameauthor1').innerHTML = "<a onclick = 'add1()'> Name: " + tempbooks[1].title + ", Author(s): " + tempbooks[1].authors.replace(/;/g, ", ") + "</a>";
             }
             if (count == 3){
             document.getElementById('similar').innerHTML = "There were three similar matches for that book.";
             document.getElementById('thumb').src = tempbooks[0].thumbnail;
-            document.getElementById('nameauthor').innerHTML = "Name: " + tempbooks[0].title + ", Author(s): " + tempbooks[0].authors.replace(/;/g, ", ");
+            document.getElementById('nameauthor').innerHTML = "<a onclick = 'add0()'> Name: " + tempbooks[0].title + ", Author(s): " + tempbooks[0].authors.replace(/;/g, ", ") + "</a>";
             document.getElementById('thumb1').src = tempbooks[1].thumbnail;
-            document.getElementById('nameauthor1').innerHTML = "Name: " + tempbooks[1].title + ", Author(s): " + tempbooks[1].authors.replace(/;/g, ", ");
+            document.getElementById('nameauthor1').innerHTML = "<a onclick = 'add1()'> Name: " + tempbooks[1].title + ", Author(s): " + tempbooks[1].authors.replace(/;/g, ", ") + "</a>";
             document.getElementById('thumb2').src = tempbooks[2].thumbnail;
-            document.getElementById('nameauthor2').innerHTML = "Name: " + tempbooks[2].title + ", Author(s): " + tempbooks[2].authors.replace(/;/g, ", ");
+            document.getElementById('nameauthor2').innerHTML = "<a onclick = 'add2()'> Name: " + tempbooks[2].title + ", Author(s): " + tempbooks[2].authors.replace(/;/g, ", ") + "</a>";
             }
             if (count > 3){
             document.getElementById('similar').innerHTML = "There were three similar matches for that book.";
             document.getElementById('thumb').src = tempbooks[0].thumbnail;
-            document.getElementById('nameauthor').innerHTML = "Name: " + tempbooks[0].title + ", Author(s): " + tempbooks[0].authors.replace(/;/g, ", ");
+            /*let nameofbook = tempbooks[0].title;
+            let addingname = "<a onclick = 'fillbox()'>" + tempbooks[0] + "</a>"*/
+            document.getElementById('nameauthor').innerHTML = "<a onclick = 'add0()'> Name: " + tempbooks[0].title + ", Author(s): " + tempbooks[0].authors.replace(/;/g, ", ") + "</a>";
             document.getElementById('thumb1').src = tempbooks[1].thumbnail;
-            document.getElementById('nameauthor1').innerHTML = "Name: " + tempbooks[1].title + ", Author(s): " + tempbooks[1].authors.replace(/;/g, ", ");
+            document.getElementById('nameauthor1').innerHTML = "<a onclick = 'add1()'> Name: " + tempbooks[1].title + ", Author(s): " + tempbooks[1].authors.replace(/;/g, ", ") + "</a>";
             document.getElementById('thumb2').src = tempbooks[2].thumbnail;
-            document.getElementById('nameauthor2').innerHTML = "Name: " + tempbooks[2].title + ", Author(s): " + tempbooks[2].authors.replace(/;/g, ", ");
+            document.getElementById('nameauthor2').innerHTML = "<a onclick = 'add2()'> Name: " + tempbooks[2].title + ", Author(s): " + tempbooks[2].authors.replace(/;/g, ", ") + "</a>";
             document.getElementById('similar').innerHTML = "There were " + count + " similar matches for that book. Here's the top three.";
             }
         }

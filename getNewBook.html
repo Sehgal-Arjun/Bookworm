@@ -98,13 +98,20 @@
     </section>
 
     <!-- Download Section -->
-    <section id="download" class="content-section text-center" style="top: 49px; height: 300px; overflow: hidden; position: relative;">
+    <section id="download" class="content-section text-center" style="min-height: 300px; overflow: hidden; position: relative;">
+        <div>
+            <h2 id = "desc" class = "centerthis"></h2>
+            <br>
 
+        </div>
 
     </section>
 
     <!-- Contact Section -->
-
+    <section id="contact" style = "height: 300px"></section>
+    <br>
+    <br>
+    <br>
     <p class="text-center">Arjun Sehgal, April 2022</p>
     <section class="row" id="">
         <h2></h2>
@@ -154,6 +161,28 @@
     let finalURL = "";
 
     let removebooks = [];
+
+    function scroll(){
+        document.querySelector('#download').scrollIntoView({
+            behavior: 'smooth'
+        });
+    }
+
+    function click0(){
+        let desc = localStorage.getItem('book0');
+        document.getElementById('desc').innerHTML = desc;
+        scroll();
+    }
+    function click1(){
+        let desc = localStorage.getItem('book1');
+        document.getElementById('desc').innerHTML = desc;
+        scroll();
+    }
+    function click2(){
+        let desc = localStorage.getItem('book2');
+        document.getElementById('desc').innerHTML = desc;
+        scroll();
+    }
     
     if (userBooks.length !== 0 && possbooks.length != 0){
         sortedpossbooks = possbooks;
@@ -236,6 +265,7 @@
             finalAuthor = authorString;
             finalURL = book.thumbnail;
             console.log(book);
+            localStorage.setItem('usethis', book.description);
         }
         else{
             console.log('empty list!');
@@ -257,7 +287,8 @@
         finalAuthor = authorString;
         finalName = book.title;
         finalURL = book.thumbnail;
-        let finalText = "Name: " + finalName + ", Author(s): " + finalAuthor;
+        localStorage.setItem('book0', book.description);
+        let finalText = "<a onclick = 'click0()'> Name: " + finalName + ", Author(s): " + finalAuthor + "</a>";
 
         document.getElementById("thumb").src = finalURL;
         document.getElementById('nameauthor').innerHTML = finalText;
@@ -267,7 +298,8 @@
         finalAuthor = book.authors.replace(/;/g,', ');
         finalName = book.title;
         finalURL = book.thumbnail;
-        finalText = "Name: " + finalName + ", Author(s): " + finalAuthor;
+        localStorage.setItem('book1', book.description);
+        finalText = "<a onclick = 'click1()'> Name: " + finalName + ", Author(s): " + finalAuthor + "</a>";
 
         document.getElementById("thumb1").src = finalURL;
         document.getElementById('nameauthor1').innerHTML = finalText;
@@ -277,7 +309,8 @@
         finalAuthor = book.authors.replace(/;/g,', ');
         finalName = book.title;
         finalURL = book.thumbnail;
-        finalText = "Name: " + finalName + ", Author(s): " + finalAuthor;
+        localStorage.setItem('book2', book.description);
+        finalText = "<a onclick = 'click2()'> Name: " + finalName + ", Author(s): " + finalAuthor + "</a>";
 
         document.getElementById("thumb2").src = finalURL;
         document.getElementById('nameauthor2').innerHTML = finalText;
@@ -285,7 +318,8 @@
     }
 
     if (sortedpossbooks.length != 0){
-        let finalText = "Name: " + finalName + ", Author(s): " + finalAuthor;
+        localStorage.setItem('book0', localStorage.getItem('usethis'));
+        let finalText = "<a onclick = 'click0()'> Name: " + finalName + ", Author(s): " + finalAuthor + "</a>";
 
         document.getElementById("thumb").src = finalURL;
         document.getElementById('nameauthor').innerHTML = finalText;
@@ -298,7 +332,8 @@
         let finalName = book.title;
         let finalAuthor = authorString;
         let finalURL = book.thumbnail;
-        let finalText = "Name: " + finalName + ", Author(s): " + finalAuthor;
+        localStorage.setItem('book1', book.description);
+        let finalText = "<a onclick = 'click1()'> Name: " + finalName + ", Author(s): " + finalAuthor + "</a>";
         document.getElementById("thumb1").src = finalURL;
         document.getElementById('nameauthor1').innerHTML = finalText;
 
@@ -309,7 +344,8 @@
             finalName = book.title;
             finalAuthor = authorString;
             finalURL = book.thumbnail;
-            finalText = "Name: " + finalName + ", Author(s): " + finalAuthor;
+            localStorage.setItem('book2', book.description);
+            finalText = "<a onclick = 'click2()'> Name: " + finalName + ", Author(s): " + finalAuthor + "</a>";
             document.getElementById("thumb2").src = finalURL;
             document.getElementById('nameauthor2').innerHTML = finalText;
         }
