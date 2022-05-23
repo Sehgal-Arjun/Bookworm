@@ -168,20 +168,24 @@
         });
     }
 
-    function click0(){
-        let desc = localStorage.getItem('book0');
-        document.getElementById('desc').innerHTML = desc;
+    function click(desc){
+        if (desc.length == 0){
+            document.getElementById('desc').innerText = "Description Unavailable."
+        }
+        else{
+            document.getElementById('desc').innerHTML = desc;
+        }
         scroll();
+    }
+
+    function click0(){
+        click(localStorage.getItem('book0'));
     }
     function click1(){
-        let desc = localStorage.getItem('book1');
-        document.getElementById('desc').innerHTML = desc;
-        scroll();
+        click(localStorage.getItem('book1'));
     }
     function click2(){
-        let desc = localStorage.getItem('book2');
-        document.getElementById('desc').innerHTML = desc;
-        scroll();
+        click(localStorage.getItem('book2'));
     }
     
     if (userBooks.length !== 0 && possbooks.length != 0){
