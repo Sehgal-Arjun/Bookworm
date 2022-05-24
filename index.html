@@ -63,6 +63,9 @@
                     if (books[i].description == undefined){
                         books.splice(i,1);
                     }
+                    if (books[i].description == ""){
+                        books.splice(i,1);
+                    }
                     else{
                         if (books[i].num_pages == 0){
                             books.splice(i,1);
