@@ -195,7 +195,7 @@ function remove(){
 }
 
 function emptyReading(){
-    if (confirm("Are you sure you want to cancel?")){
+    if (confirm("Are you sure you want to clear?")){
         let removebooks = [];
         let userbooks = JSON.parse(localStorage.getItem('userbooks'));
         for (let i = 0; i < userbooks.length; i++){
