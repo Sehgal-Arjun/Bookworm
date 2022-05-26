@@ -177,7 +177,7 @@ a:focus {
     border-radius: 35px;
     font-size: 40px;
     color: #fff;
-    background: 0 0;
+    background: url("../images/arrow.png");
     -webkit-transition: background .3s ease-in-out;
     -moz-transition: background .3s ease-in-out;
     transition: background .3s ease-in-out;

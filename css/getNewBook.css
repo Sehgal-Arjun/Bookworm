@@ -42,3 +42,7 @@
 a {
     cursor:pointer;
 }
+
+.notbold {
+    font-weight: normal;
+}
