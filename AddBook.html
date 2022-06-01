@@ -83,7 +83,15 @@
     <section id="about" class="container content-section text-center">
 
         <h2>find your book</h2>
-        <input type="text" class="form-control" placeholder="Book's Name" id="input">
+        <form autocomplete="off" action="/action_page.php">
+            <div class="autocomplete">
+              <input style = "width: 80vw; color: black;" id="input" type="text" name="myBook" placeholder="Book's Name">
+            </div>
+        </form>
+
+
+
+
         <br>
         <br>
         <button onclick = "add()" class="btn btn-success" id="">ADD</button>
