@@ -118,13 +118,17 @@
                     /* 1.58 mins per page, on average */
                     let amountofmins = 1.58 * numpages;
                     let numhours = amountofmins/60.0;
-                    document.getElementById('numhours').innerHTML = numhours;
+                    document.getElementById('numhours').innerHTML = numhours.toFixed(2);
                     document.getElementById('numbooks').innerHTML = userbooks.length;
                 }
                 else{
                     document.getElementById('numhours').innerHTML = 0;
                     document.getElementById('numbooks').innerHTML = 0;
                 }
+
+		if (userbooks.length == 1){
+		    document.getElementById('changeifone').innerHTML = "book. check it out."
+		}
             })
         }
         else{
@@ -205,7 +209,7 @@
             <h2 id="" style="top: -66px; height: 47px; overflow: hidden; position: relative;">Hours,</h2>
             <h2 style="height: 39px; overflow: hidden; top: -69px; position: relative;">over</h2>
             <h2 id = "numbooks" style="top: -103px; height: 39px; overflow: hidden; position: relative;">0</h2>
-            <h2 style="top: -135px; height: 41px; overflow: hidden; position: relative;">book(s). check it out.</h2>
+            <h2 id = "changeifone "style="top: -135px; height: 41px; overflow: hidden; position: relative;">books. check it out.</h2>
         </div>
     </section>
 
